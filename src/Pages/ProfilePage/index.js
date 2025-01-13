@@ -7,7 +7,7 @@ function ProfilePage() {
     return (
         <>
             <h1>Perfil</h1>
-            <h1>Bienvenido, {auth.user.username}</h1>
+            <h1>Bienvenido, {auth.user?.username}</h1>
         </>
     )
 }
