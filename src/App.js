@@ -1,23 +1,30 @@
 import { HashRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./Components/Auth";
+import { Menu } from "./Components/Menu"
 import { BlogPage } from "./Pages/BlogPage";
 import { HomePage } from "./Pages/HomePage";
 import { ProfilePage } from "./Pages/ProfilePage";
-import { Menu } from "./Components/Menu"
 import { BlogPost } from "./Pages/BlogPost/indez";
+import { LoginPage } from "./Pages/LoginPage";
+import { LogoutPage } from "./Pages/LogoutPage";
 
 function App() {
   return (
     <>
       <HashRouter>
-        <Menu />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/blog" element={<BlogPage />}>
-            <Route path=":slug" element={<BlogPost />} />
-          </Route>
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/*" element={<p>Not Found</p>} />
-        </Routes>
+        <AuthProvider>
+          <Menu />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/blog" element={<BlogPage />}>
+              <Route path=":slug" element={<BlogPost />} />
+            </Route>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/logout" element={<LogoutPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/*" element={<p>Not Found</p>} />
+          </Routes>
+        </AuthProvider>
       </HashRouter>
     </>
   );
